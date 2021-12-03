@@ -34,7 +34,7 @@ if ( ! class_exists( 'blog_templates' ) ) {
 			// Add template selector to Add Site screen
             add_action( 'network_site_new_form', array( $this, 'add_template_selector' ) );
 
-            add_action('wp_enqueue_scripts', create_function('', 'wp_enqueue_script("jquery");'));
+            add_action('wp_enqueue_scripts', array($this , 'enqueue_script_jquery'));
 
             // Special features for Multi-Domains
             add_action( 'add_multi_domain_form_field', array($this, 'multi_domain_form_field' ) ); // add field to domain addition form
@@ -66,6 +66,10 @@ if ( ! class_exists( 'blog_templates' ) ) {
 
 
             do_action( 'nbt_object_create', $this );
+        }
+
+        public function enqueue_script_jquery(){
+            wp_enqueue_script("jquery");
         }
 
         public function enqueue_styles() {
